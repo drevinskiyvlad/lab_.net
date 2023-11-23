@@ -4,17 +4,16 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{EAFC87CB-3A4D-4827-A113-D6CC017315E6}</ProjectGuid>
-    <OutputType>Exe</OutputType>
-    <RootNamespace>TDR.TaskPlanner.ConsoleRunner</RootNamespace>
-    <AssemblyName>TDR.TaskPlanner.ConsoleRunner</AssemblyName>
+    <ProjectGuid>{F110EC53-C1BD-4A90-8498-E8ECB076A1B2}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Domain.Models</RootNamespace>
+    <AssemblyName>Domain.Models</AssemblyName>
     <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -24,7 +23,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -43,21 +41,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Program.cs" />
+    <Compile Include="enums\enumClass.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="App.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Domain.Logic\Domain.Logic.csproj">
-      <Project>{897da979-71d9-4c84-8446-dbb2deb669d1}</Project>
-      <Name>Domain.Logic</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Domain.Models\Domain.Models.csproj">
-      <Project>{f110ec53-c1bd-4a90-8498-e8ecb076a1b2}</Project>
-      <Name>Domain.Models</Name>
-    </ProjectReference>
+    <Compile Include="WorkItem.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
