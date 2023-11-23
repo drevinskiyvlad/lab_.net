@@ -4,31 +4,67 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Domain.Models;
+using DataAccess;
+using DataAccess.Abstractions;
 
 namespace Domain.Logic
 {
     public class SimpleTaskPlanner
     {
-        public WorkItem[] CreatePlan(WorkItem[] items)
+        private readonly TWorkItemsRepository _workItemsRepository;
+
+        public SimpleTaskPlanner(TWorkItemsRepository workItemsRepository)
         {
-            var itemsAsList = items.ToList();
-            itemsAsList.Sort(CompareWorkItems);
-            return itemsAsList.ToArray();
+            _workItemsRepository = workItemsRepository ?? throw new ArgumentNullException(nameof(workItemsRepository));
         }
-        public static int CompareWorkItems(WorkItem firstItem, WorkItem secondItem)
+
+        public WorkItem[] CreatePlan()
         {
-            // Compare by Priority (descending)
-            int priorityComparison = secondItem.Priority.CompareTo(firstItem.Priority);
-            if (priorityComparison != 0)
-                return priorityComparison;
+            // Get all tasks from the repository
+            var allTasks = _workItemsRepository.GetAll();
 
-            // Compare by DueDate (ascending)
-            int dueDateComparison = firstItem.DueDate.CompareTo(secondItem.DueDate);
-            if (dueDateComparison != 0)
-                return dueDateComparison;
+            // Filter out completed tasks
+            var relevantTasks = allTasks.Where(task => !task.IsCompleted).ToArray();
 
-            // Compare by Title (alphabetical)
-            return string.Compare(firstItem.Title, secondItem.Title, StringComparison.Ordinal);
+            // Sort the relevant tasks
+            var sortedTasks = relevantTasks.OrderBy(task => task.Priority)
+                                           .ThenBy(task => task.DueDate)
+                                           .ThenBy(task => task.Title)
+                                           .ToArray();
+
+            return sortedTasks;
+        }
+
+        public Guid AddWorkItem(WorkItem workItem)
+        {
+            if (workItem == null)
+            {
+                throw new ArgumentNullException(nameof(workItem));
+            }
+
+            // Add the work item to the repository and return the assigned ID
+            return _workItemsRepository.Add(workItem);
+        }
+
+        public bool MarkAsCompleted(Guid id)
+        {
+            var workItem = _workItemsRepository.Get(id);
+
+            if (workItem != null)
+            {
+                // Mark the work item as completed
+                workItem.IsCompleted = true;
+                // Update the work item in the repository
+                return _workItemsRepository.Update(workItem);
+            }
+
+            return false;
+        }
+
+        public bool RemoveWorkItem(Guid id)
+        {
+            // Remove the work item from the repository
+            return _workItemsRepository.Remove(id);
         }
     }
 }

@@ -4,17 +4,16 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{EAFC87CB-3A4D-4827-A113-D6CC017315E6}</ProjectGuid>
-    <OutputType>Exe</OutputType>
-    <RootNamespace>TDR.TaskPlanner.ConsoleRunner</RootNamespace>
-    <AssemblyName>TDR.TaskPlanner.ConsoleRunner</AssemblyName>
+    <ProjectGuid>{B2DFE39C-8AD9-4F4E-BD1C-E88603E21379}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>DataAccess</RootNamespace>
+    <AssemblyName>DataAccess</AssemblyName>
     <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -24,7 +23,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -33,6 +31,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.13.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -43,24 +44,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Program.cs" />
+    <Compile Include="FIleWorkItemsRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
+    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DataAccess.Abstractions\DataAccess.Abstractions.csproj">
       <Project>{46a737d1-7cad-4386-bca6-34a19d082ae0}</Project>
       <Name>DataAccess.Abstractions</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\DataAccess\DataAccess.csproj">
-      <Project>{b2dfe39c-8ad9-4f4e-bd1c-e88603e21379}</Project>
-      <Name>DataAccess</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Domain.Logic\Domain.Logic.csproj">
-      <Project>{897da979-71d9-4c84-8446-dbb2deb669d1}</Project>
-      <Name>Domain.Logic</Name>
     </ProjectReference>
     <ProjectReference Include="..\Domain.Models\Domain.Models.csproj">
       <Project>{f110ec53-c1bd-4a90-8498-e8ecb076a1b2}</Project>

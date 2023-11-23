@@ -45,6 +45,14 @@
     <Compile Include="SimpleTaskPlanner.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\DataAccess.Abstractions\DataAccess.Abstractions.csproj">
+      <Project>{46a737d1-7cad-4386-bca6-34a19d082ae0}</Project>
+      <Name>DataAccess.Abstractions</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DataAccess\DataAccess.csproj">
+      <Project>{b2dfe39c-8ad9-4f4e-bd1c-e88603e21379}</Project>
+      <Name>DataAccess</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Domain.Models\Domain.Models.csproj">
       <Project>{f110ec53-c1bd-4a90-8498-e8ecb076a1b2}</Project>
       <Name>Domain.Models</Name>
